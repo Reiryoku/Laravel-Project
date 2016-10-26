@@ -14,7 +14,8 @@ use Session;
 class PostController extends Controller
 {
 	
-	public function __construct() {
+	public function __construct() 
+	{
         $this->middleware('auth');
     }
 	
@@ -26,6 +27,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderBy('created_at', 'desc')->paginate(4);
+		
         return view('posts.index')->withPosts($posts);
     }
 
@@ -38,6 +40,7 @@ class PostController extends Controller
     {
         $categories = Category::all();
 		$tags = Tag::all();
+		
         return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
@@ -51,10 +54,10 @@ class PostController extends Controller
     {
         // validate the data
         $this->validate($request, array(
-                'title' => 'required|max:255',
+        		'title' => 'required|max:255',
                 'category_id'   => 'required|integer',
                 'body'          => 'required'
-            ));
+        ));
 
         // store in the database
         $post = new Post;
@@ -82,6 +85,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+		
         return view('posts.show')->withPost($post);
     }
 
@@ -132,7 +136,7 @@ class PostController extends Controller
                 'title' => 'required|max:255',
                 'category_id' => 'required|integer',
                 'body'  => 'required'
-            ));
+       	));
 			
 		// Save the data to the database
         $post = Post::find($id);	
@@ -172,6 +176,7 @@ class PostController extends Controller
         $post->delete();
 
         Session::flash('success', 'The post was successfully deleted.');
+		
         return redirect()->route('posts.index');
     }
 }
