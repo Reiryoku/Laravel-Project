@@ -51,6 +51,7 @@ body.login {
 </style>
 
 
+<div style="display:none">
 <section id="auth-bg-wrapper" class="bg-on" style="background-image: url(http://test.subztv.gr/themes/subztv/assets/bootstrap/img/blur1.jpg);"></section>
 
 <div id="auth-form-wrapper">
@@ -60,7 +61,7 @@ body.login {
 			<div class="logo"></div>
 		</div>
 	</a>
-	<form class="simple_form form-signin" novalidate="novalidate" id="new_user" action="/auth/signin" accept-charset="UTF-8" method="post">
+	<form class="simple_form form-signin" novalidate id="new_user" action="/auth/signin" accept-charset="UTF-8" method="post">
 		<input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="2VLia0+QuxOIgUGxmkYN8aaxLk9BWA42CnUvj0S3+O/OGQCe8/XY8URpqi+fIOBl6mkG9Jbxh9GTY3+j6OJJrw==">
 		<h1>trakt</h1>
 		<h2 class="quote">I am the one who knocks.</h2>
@@ -68,7 +69,7 @@ body.login {
 			<div class="with-icon">
 				<div class="icon trakt-icon-user"></div>
 				<div class="control-group string required user_login">
-					<div class="controls"><input class="string required top form-control" autocorrect="off" autocapitalize="off" autofocus="autofocus" required="required" aria-required="true" placeholder="Username or Email" type="text" name="user[login]" id="user_login"></div>
+					<div class="controls"><input class="string required top form-control" autocorrect="off" autocapitalize="off" autofocus required="required" aria-required="true" placeholder="Username or Email" type="text" name="user[login]" id="user_login"></div>
 				</div>
 			</div>
 			<div class="with-icon">
@@ -113,7 +114,7 @@ body.login {
 	</form>
 	<div class="bottom-wrapper">New to Trakt.tv? <a href="/auth/join">Join now <span class="trakt-icon-arrow-right"></span></a></div>
 </div>
-
+</div>
 
 
 

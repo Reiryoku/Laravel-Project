@@ -2,8 +2,11 @@
 
 @section('title', '| Επεξεργασία Άρθρου')
 
-@section('content')
+@section('stylesheets')
+	{!! Html::style('css/select2.min.css') !!}
+@endsection
 
+@section('content')
 <section id="results-top-wrapper">
 	<div class="poster-bg-wrapper">
     	<div class="poster-bg" style="background-image: url({{ URL::to('/') }}/img/poster-bg.jpg)"></div>
@@ -12,7 +15,6 @@
     	<h1>Επεξεργασία Άρθρου</h1>
     </div>
 </section>
-
 <section id="main-wrapper">
 	<div class="container">
     	<div class="row">
@@ -25,6 +27,10 @@
                     <div class="form-group">
                     	{!! Form::label('title', 'Κατηγορία:') !!}
 						{{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
+                    </div>
+                    <div class="form-group">
+                    	{!! Form::label('title', 'Ετικέτες:') !!}
+						{{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2', 'multiple' => 'multiple']) }}
                     </div>
                     <div class="form-group">
                     	{!! Form::label('title', 'Περιεχόμενο:') !!}
@@ -43,4 +49,13 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('scripts')
+	{!! Html::script('js/select2.min.js') !!}
+	<script type="text/javascript">
+		$('.select2').select2();
+		$('.select2').select2().val({!! json_encode($post->tags()->getRelatedIds()) !!}).trigger('change');
+	</script>
+
 @endsection

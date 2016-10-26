@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Auth;
 use Session;
 
@@ -36,7 +37,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create')->withCategories($categories);
+		$tags = Tag::all();
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -63,6 +65,8 @@ class PostController extends Controller
 		$post->user_id = Auth::id();
 
         $post->save();
+		
+		$post->tags()->sync($request->tags, false);
 
         Session::flash('success', 'Το άρθρο δημιουργήθηκε επιτυχώς!');
 
@@ -77,7 +81,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::find($id);
         return view('posts.show')->withPost($post);
     }
 
@@ -89,15 +93,26 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        // find the post in the database and save as a var
+		
+		// find the post in the database and save as a var
         $post = Post::find($id);
+		
         $categories = Category::all();
         $cats = array();
+		
         foreach ($categories as $category) {
             $cats[$category->id] = $category->name;
         }
+		
+        $tags = Tag::all();
+        $tags2 = array();
+		
+        foreach ($tags as $tag) {
+            $tags2[$tag->id] = $tag->name;
+        }
+		
         // return the view and pass in the var we previously created
-        return view('posts.edit')->withPost($post)->withCategories($cats);
+        return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
     }
 
     /**
@@ -118,6 +133,9 @@ class PostController extends Controller
                 'category_id' => 'required|integer',
                 'body'  => 'required'
             ));
+			
+		// Save the data to the database
+        $post = Post::find($id);	
 
         $post->title = $request->input('title');
         $post->body = $request->input('body');
@@ -125,6 +143,12 @@ class PostController extends Controller
 		$post->user_id = Auth::id();
 
         $post->save();
+		
+		if (isset($request->tags)) {
+            $post->tags()->sync($request->tags);
+        } else {
+            $post->tags()->sync(array());
+        }
 
         // set flash data with success message
         Session::flash('success', 'Το άρθρο ενημερώθηκε επιτυχώς!');
@@ -142,6 +166,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+		
+		$post->tags()->detach();
 
         $post->delete();
 

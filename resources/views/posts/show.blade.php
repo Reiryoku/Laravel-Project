@@ -20,8 +20,16 @@
                         <span class="pull-left">
                         	<ul class="list-inline">
                             	<li><i class="fa fa-calendar fa-fw"></i> {{ date('M j, Y h:ia', strtotime($post->created_at)) }}</li>
-                            	<li>{{ $post->category->name }}</li>
-                                <li>{{ $post->user->first_name. ' ' .$post->user->last_name }}</li>
+                                <li><span><i class="fa fa-user" aria-hidden="true"></i> </span>{{ $post->user->first_name. ' ' .$post->user->last_name }}</li>
+                            	<li><span>Κατηγορία: </span>{{ $post->category->name }}</li>                               
+                                <li>
+                                    <ul class="list-inline">
+                                    	<span><i class="fa fa-tags" aria-hidden="true"></i> </span>
+                                        @foreach ($post->tags as $tag)
+                                            <li>{{ $tag->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                </li>
                             </ul>
                         </span>
                         <span class="pull-right">

@@ -2,8 +2,11 @@
 
 @section('title', '| Νέο Άρθρο')
 
-@section('content')
+@section('stylesheets')
+	{!! Html::style('css/select2.min.css') !!}
+@endsection
 
+@section('content')
 <section id="results-top-wrapper">
 	<div class="poster-bg-wrapper">
     	<div class="poster-bg" style="background-image: url({{ URL::to('/') }}/img/poster-bg.jpg)"></div>
@@ -12,7 +15,6 @@
     	<h1>Νέο Άρθρο</h1>
     </div>
 </section>
-
 <section id="main-wrapper">
 	<div class="container">
     	<div class="row">
@@ -30,6 +32,13 @@
                         </select>
                 	</div>
                     <div class="form-group">
+                        <select class="form-control select2" name="tags[]" multiple="multiple">
+                            @foreach($tags as $tag)
+                                <option value='{{ $tag->id }}'>{{ $tag->name }}</option>   
+                            @endforeach
+                        </select>
+                	</div>
+                    <div class="form-group">
                         {!! Form::textarea('body', null, ['class' => 'form-control', 'placeholder' => 'Περιεχόμενο Άρθρου', 'required' => '']) !!}                   
                     </div>
                     <div class="form-group">
@@ -40,4 +49,12 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('scripts')
+	{!! Html::script('js/select2.min.js') !!}
+    <!-- Scripts -->
+    <script type="text/javascript">
+		$('.select2').select2();
+	</script>
 @endsection
