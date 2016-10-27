@@ -13,7 +13,7 @@
                 	<h1>{{ $post->title }}</h1>
                 </header>
                 <figure class="post-image">
-                	<img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="{{ $post->image }}" class="img-responsive">
+                	<img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="{{ asset('uploads/images/'. $post->image) }}" class="img-responsive">
                 </figure>
                 <div class="post-inner">
                     <div class="post-meta clearfix">

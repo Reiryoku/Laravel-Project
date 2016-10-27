@@ -94,31 +94,28 @@ body.widgets .buttons .btn {
                 </div>
             </div>
             <div class="col-md-10 col-sm-9">
+            {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'PUT', 'class' => 'simple_form form-horizontal', 'files' => 'true']) !!}
                 <div class="panel panel-default" id="image">
                     <div class="panel-heading">Avatar</div>
                     <div class="panel-body">
-                    {!! Form::open(['route' => ['settings', $user->id], 'class' => 'simple_form form-horizontal', 'files' => true]) !!}
+                    
                             <label class="col-sm-3 control-label user-avatar">
-                                <img src="/uploads/avatars/{{ $user->name. '/' .$user->avatar }}">
+                                <img src="{{ '/uploads/images/' .$user->avatar }}">
                             </label>
                             <div class="col-sm-7 user-avatar control-group">
                                 <div class="form-group">
                                     {!! Form::file('avatar', ['class' => 'form-control', 'id' => 'avatar-display']) !!}
                                 </div>
-                                <div class="form-group"> 
-                                	<div class="col-sm-12 buttons"> 
-                                    	{!! Form::submit('Ενημερωση', ['class' => 'btn btn btn-primary']) !!}
-                                    </div>
-                                </div>
+
                             </div>
                         
-                        {!! Form::close() !!}
+                        
              		</div>
                 </div>
                 <div class="panel panel-default" id="account">
                     <div class="panel-heading">Account</div>
                     <div class="panel-body">
-                        {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'PUT', 'class' => 'simple_form form-horizontal']) !!}
+                        
                             <div class="form-group">
                             	{{ Form::label($user->name, 'Όνομα Χρήστη:', ['class' => 'col-sm-3 control-label']) }}
                                 <div class="col-sm-7">
@@ -178,15 +175,15 @@ body.widgets .buttons .btn {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
+                            </div> 
+                    </div>
+                </div>
+                <div class="form-group">
                             	<div class="col-sm-12 buttons">
                                 	{!! Form::submit('Ενημερωση', ['class' => 'btn btn btn-primary']) !!}
                                 </div>
-                            </div>  
-                        {!! Form::close() !!}    
-                    </div>
-                </div>
+                            </div>
+            {!! Form::close() !!}
                 <div class="panel panel-default" id="password">
                     <div class="panel-heading">Change Password</div>
                     <div class="panel-body">

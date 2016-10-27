@@ -9,7 +9,7 @@
 	<div class="shadow hidden-xs"></div>
 	<div class="container">
 		<div id="avatar-wrapper">
-            <img src="{{ isset($user->avatar) ? '/uploads/avatars/'.$user->name.'/'.$user->avatar : '/uploads/avatars/default.jpg' }}" class="avatar">
+            <img src="{{ isset($user->avatar) ? '/uploads/images/'.$user->avatar : '/uploads/images/default.jpg' }}" class="avatar">
 			<h1>{{ $user->first_name && $user->last_name ? $user->first_name : $user->name }}</h1>
 			<input type="hidden" name="username" id="username" value="{{ $user->name }}">
 			<div class="under-name">

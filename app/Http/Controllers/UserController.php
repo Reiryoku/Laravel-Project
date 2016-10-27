@@ -10,6 +10,7 @@ use App\Post;
 use Auth;
 use Session;
 use Image;
+use Storage;
 use File;
 
 class UserController extends Controller
@@ -91,7 +92,8 @@ class UserController extends Controller
         // Validate the data
         $this->validate($request, array(
                 'name' => 'required|max:255',
-				'email' => 'required|max:255'
+				'email' => 'required|max:255',
+				'image' => 'image'
             ));
         // Save the data to the database
         $user = User::find($id);
@@ -101,6 +103,19 @@ class UserController extends Controller
 		$user->first_name = $request->input('first_name');
 		$user->last_name = $request->input('last_name');
 		$user->gender = $request->input('gender');
+		
+		if ($request->hasFile('avatar')) 
+		{
+        	$image = $request->file('avatar');
+          	$filename = time() . '.' . $image->getClientOriginalExtension();
+          	$location = public_path('uploads/images/' . $filename);
+          	Image::make($image)->resize(100, null, function ($constraint) {$constraint->aspectRatio(); $constraint->upsize();} )->save($location);
+			$oldFilename = $user->avatar;
+			// update the database
+			$user->avatar = $filename;
+			// delete old image
+			Storage::delete($oldFilename);
+        }
 
         $user->save();
 

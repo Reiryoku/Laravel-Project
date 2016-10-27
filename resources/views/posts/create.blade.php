@@ -20,7 +20,7 @@
     	<div class="row">
             <div class="col-md-12">
                 <h1>Δημιουργία Νέου Άρθρου</h1>
-                {!! Form::open(array('route' => 'posts.store')) !!}
+                {!! Form::open(['route' => 'posts.store', 'files' => true]) !!}
                     <div class="form-group">
                         {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Τίτλος', 'required' => '', 'maxlength' => '255']) !!}
                     </div>
@@ -38,6 +38,9 @@
                             @endforeach
                         </select>
                 	</div>
+					<div class="form-group">
+						{{ Form::file('image') }}
+                    </div>
                     <div class="form-group">
                         {!! Form::textarea('body', null, ['class' => 'form-control', 'placeholder' => 'Περιεχόμενο Άρθρου', 'required' => '']) !!}                   
                     </div>

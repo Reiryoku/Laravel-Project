@@ -9,6 +9,8 @@ use App\Post;
 use App\Category;
 use App\Tag;
 use Auth;
+use Image;
+use Storage;
 use Session;
 
 class PostController extends Controller
@@ -56,7 +58,8 @@ class PostController extends Controller
         $this->validate($request, array(
         		'title' => 'required|max:255',
                 'category_id'   => 'required|integer',
-                'body'          => 'required'
+                'body'          => 'required',
+				'image'         => 'required|image'
         ));
 
         // store in the database
@@ -66,6 +69,16 @@ class PostController extends Controller
 		$post->category_id = $request->category_id;
         $post->body = $request->body;
 		$post->user_id = Auth::id();
+		
+		if ($request->hasFile('image')) 
+		{
+        	$image = $request->file('image');
+          	$filename = time() . '.' . $image->getClientOriginalExtension();
+          	$location = public_path('uploads/images/' . $filename);
+          	Image::make($image)->resize(1160, null, function ($constraint) {$constraint->aspectRatio(); $constraint->upsize();} )->save($location);
+			
+          	$post->image = $filename;
+        }
 
         $post->save();
 		
@@ -135,7 +148,8 @@ class PostController extends Controller
         $this->validate($request, array(
                 'title' => 'required|max:255',
                 'category_id' => 'required|integer',
-                'body'  => 'required'
+                'body'  => 'required',
+				'image' => 'image'
        	));
 			
 		// Save the data to the database
@@ -145,6 +159,19 @@ class PostController extends Controller
         $post->body = $request->input('body');
 		$post->category_id = $request->input('category_id');
 		$post->user_id = Auth::id();
+		
+		if ($request->hasFile('image')) 
+		{
+        	$image = $request->file('image');
+          	$filename = time() . '.' . $image->getClientOriginalExtension();
+          	$location = public_path('uploads/images/' . $filename);
+          	Image::make($image)->resize(1160, null, function ($constraint) {$constraint->aspectRatio(); $constraint->upsize();} )->save($location);
+			$oldFilename = $post->image;
+			// update the database
+			$post->image = $filename;
+			// delete old image
+			Storage::delete($oldFilename);
+        }
 
         $post->save();
 		
@@ -172,6 +199,7 @@ class PostController extends Controller
         $post = Post::find($id);
 		
 		$post->tags()->detach();
+		Storage::delete($post->image);
 
         $post->delete();
 

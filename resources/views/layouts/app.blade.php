@@ -3,14 +3,16 @@
     <head>
         @include('partials.head')
     </head>
+     
     <body class="@yield('body-class')">
+       
     	@section('nav')
 	 		@include('partials.navbar')
 		@show
        
+        @include('partials.messages')
         
         <div id="content">
-        	@include('partials.messages')
         	@yield('content')
         </div>
         

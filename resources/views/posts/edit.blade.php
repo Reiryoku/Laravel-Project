@@ -19,10 +19,15 @@
 	<div class="container">
     	<div class="row">
             <div class="col-md-12">
-                {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
+                {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'files' => true]) !!}
                     <div class="form-group">
                     	{!! Form::label('title', 'Τίτλος:') !!}
                         {!! Form::text('title', null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                    	{!! Form::label('image', 'Τίτλος:') !!}
+                    	<img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="{{ asset('uploads/images/'. $post->image) }}" class="img-responsive">
+                        {{ Form::file('image') }}                   
                     </div>
                     <div class="form-group">
                     	{!! Form::label('title', 'Κατηγορία:') !!}
