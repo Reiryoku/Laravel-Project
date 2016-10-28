@@ -4,7 +4,10 @@
         @include('partials.head')
     </head>
      
-    <body class="@yield('body-class')">
+     
+    @section('bodytag')
+	<body>
+    @show
        
     	@section('nav')
 	 		@include('partials.navbar')

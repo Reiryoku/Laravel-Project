@@ -22,6 +22,7 @@ Route::resource('users',
         'names' => array('index' => 'users.index', 'show' => 'users.show', 'store' => 'users.store', 'edit' => 'users.edit', 'destroy' => 'users.destroy', 'create' => 'users.create')
     )
 );
+Route::get('user/{id}', array('uses' => 'UserController@show', 'as' => 'profile'));
 Route::get('user/{id}/posts', array('uses' => 'UserController@posts', 'as' => 'user.posts'));
 
 // Posts
@@ -36,7 +37,11 @@ Route::resource('tags', 'TagController', ['except' => ['create']]);
 Route::get('movie/{id}','MovieController@show');
 Route::get('movies','MovieController@index');
 
-// Social
-$s = 'social.';
-Route::get('/social/redirect/{provider}',   ['as' => $s . 'redirect',   'uses' => 'SocialController@redirect']);
-Route::get('/social/callback/{provider}',     ['as' => $s . 'callback',     'uses' => 'SocialController@callback']);
+// Roles
+Route::get('roles',['as'=>'roles.index','uses'=>'RoleController@index']);
+Route::get('roles/create',['as'=>'roles.create','uses'=>'RoleController@create']);
+Route::post('roles/create',['as'=>'roles.store','uses'=>'RoleController@store']);
+Route::get('roles/{id}',['as'=>'roles.show','uses'=>'RoleController@show']);
+Route::get('roles/{id}/edit',['as'=>'roles.edit','uses'=>'RoleController@edit']);
+Route::patch('roles/{id}',['as'=>'roles.update','uses'=>'RoleController@update']);
+Route::delete('roles/{id}',['as'=>'roles.destroy','uses'=>'RoleController@destroy']);

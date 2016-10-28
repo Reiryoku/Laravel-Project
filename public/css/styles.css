@@ -45,6 +45,23 @@ h2 .feed-icons .feed-icon {
     vertical-align: middle;
     transition: all .5s;
 }
+
+.panel {
+    margin-bottom: 20px;
+    background-color: white;
+    border: 1px solid transparent;
+    border-radius: 0px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+.panel-default {
+    border-color: #dddddd;
+}
+.panel .panel-heading {
+    text-transform: uppercase;
+	font-weight:bold;
+    padding: 8px;
+}
 /* ==========================================================================
    Navbar
    ========================================================================== */

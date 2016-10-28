@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+
 use App\User;
 use App\Post;
+use App\Category;
+use App\Role;
+use App\Permission;
+
 use Auth;
 use Session;
 use Image;
@@ -27,10 +32,12 @@ class UserController extends Controller
 		dd($users);
     }
 	
+	
 	public function posts($id)
     {
-		$user = User::find($id);
+		$user = User::with('roles')->find($id);
         $posts = Post::where('user_id', '=', $user->id)->orderBy('created_at', 'desc')->paginate(2);
+
 		return view('users.posts')->withUser($user)->withPosts($posts);
     }
 
@@ -64,8 +71,14 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-    	$posts = Post::where('user_id', '=', $user->id)->orderBy('created_at', 'desc')->take(4)->get();
-		return view('users.show')->withUser($user)->withPosts($posts);
+		
+    	$posts = Post::latest()->where('user_id', '=', $user->id)->get();
+		
+		$categories = Category::whereHas('posts', function ($query) use($user) {
+    		$query->where('user_id', '=', $user->id);
+		})->get();
+		
+		return view('users.show')->withUser($user)->withPosts($posts)->withCategories($categories);
     }
 
     /**
@@ -77,7 +90,19 @@ class UserController extends Controller
     public function edit($id)
     {
     	$user = User::find($id);
-       	return view('users.edit')->withUser($user);
+		
+		$roles = Role::pluck('display_name','id');
+        $userRole = $user->roles->pluck('id','id')->toArray();
+		
+		// for model binding
+    	if($user->id == Auth::id()){
+        	return view('users.edit')->withUser($user)->withRoles($roles)->withUserRole($userRole);
+   	 	}
+    	else
+		{
+        	return redirect()->route('users.show', $user);
+    	}
+       	
     }
 
     /**
@@ -93,7 +118,8 @@ class UserController extends Controller
         $this->validate($request, array(
                 'name' => 'required|max:255',
 				'email' => 'required|max:255',
-				'image' => 'image'
+				'image' => 'image',
+            	'roles' => 'required'
             ));
         // Save the data to the database
         $user = User::find($id);
@@ -125,52 +151,7 @@ class UserController extends Controller
         // redirect with flash data to posts.show
         return redirect()->route('users.edit', $user->id);
     }
-	
-	public function avatar(Request $request)
-	{
-		
-		$this->validate($request, [
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
 
-    	// Handle the user upload of avatar
-    	if($request->hasFile('avatar'))
-		{
-    		$avatar = $request->file('avatar');
-    		$filename = time() . '.' . $avatar->getClientOriginalExtension();
-			
-			$dir = public_path('/uploads/avatars/'.Auth::user()->name);
-			$path = $dir.'/'.$filename;
-			
-    		$img = Image::make($avatar);
-			// resize the image to a width of 300 and constrain aspect ratio (auto height)
-			$img->resize(300, null, function ($constraint) {
-    			$constraint->aspectRatio();
-			});
-			
-			// check if $folder is a directory
-			if( ! File::isDirectory($dir) ) 
-			{
-		
-				File::makeDirectory($dir, 493, true);
-			}
-			
-			$img->save($path);
-
-    		$user = Auth::user();
-			
-    		$user->avatar = $filename;
-			
-    		$user->save();
-    	}
-		
-		// set flash data with success message
-        Session::flash('success', 'Η εικόνα προφίλ ενημερώθηκε επιτυχώς!');
-
-    	// redirect with flash data to posts.show
-        return redirect()->route('users.edit', $user->id);
-
-    }
 
     /**
      * Remove the specified resource from storage.
