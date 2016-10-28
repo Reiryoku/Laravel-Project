@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                     	{!! Form::label('image', 'Τίτλος:') !!}
-                    	<img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="{{ asset('uploads/images/'. $post->image) }}" class="img-responsive">
+                    	<img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="{{ asset('uploads/images/'. $post->image) }}" class="img-responsive lazy">
                         {{ Form::file('image') }}                   
                     </div>
                     <div class="form-group">

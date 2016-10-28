@@ -5,11 +5,11 @@
 @section('content')
 
 <section id="cover-wrapper">
-	<div class="full-bg enabled" style="background-image: url({{ isset($user->cover) ? '/uploads/cover/'.$user->name.'/'.$user->cover : '/uploads/covers/default.jpg' }});"></div>
+	<div class="full-bg enabled" style="background-image: url({{ isset($user->cover) ? '/uploads/images/'.$user->cover : '/uploads/images/cover.jpg' }});"></div>
 	<div class="shadow hidden-xs"></div>
 	<div class="container">
 		<div id="avatar-wrapper">
-            <img src="{{ isset($user->avatar) ? '/uploads/images/'.$user->avatar : '/uploads/images/default.jpg' }}" class="avatar">
+            <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="{{ isset($user->avatar) ? '/uploads/images/'.$user->avatar : '/uploads/images/avatar.jpg' }}" class="avatar lazy">
 			<h1>{{ $user->first_name && $user->last_name ? $user->first_name : $user->name }}</h1>
 			<input type="hidden" name="username" id="username" value="{{ $user->name }}">
 			<div class="under-name">
@@ -20,21 +20,22 @@
 					<div class="fa fa-mars" title="Male"></div>
 					<span title="Age">29</span>
 				</h3>
-				<h3 class="social-icons"></h3>
+				<h3 class="social-icons"><a target="_blank" title="" href="https://www.facebook.com/app_scoped_user_id/782624017/" data-original-title="Facebook"><i class="network-icon fa fa-facebook"></i></a></h3>
 			</div>
 		</div>
 	</div>
 	<div id="links-wrapper">
 		<div class="container">
-        	<a class="selected" href="/users/reiryoku">Profile</a>
-            <a href="/users/reiryoku/history">History</a>
+        	<a class="selected" href="{{ route('users.show', $user->id) }}">Προφίλ</a>
+            <a href="{{ route('user.posts', $user->id) }}">Άρθρα</a>
        	</div>
 	</div>
 </section>
+@if(isset($user->posts[0]))
 <section id="recent-wrapper">
 	<div class="container">
 		<h2 class="section">
-			<a class="see-more-link" href="{{ route('posts.index') }}">
+			<a class="see-more-link" href="{{ route('user.posts', $user->id) }}">
 				<div class="see-more">
 					<span class="see-more-text">ολα τα αρθρα</span>
                     <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
@@ -48,7 +49,7 @@
 				<a href="{{ route('posts.show', $post->id) }}">
 					<div class="poster screenshot">
 						<img class="base" src="http://test.subztv.gr/themes/subztv/assets/bootstrap/img/noimage2.png" alt="Fanart">
-                        <img class="real lazy" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="{{ $post->image }}">
+                        <img class="real lazy" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="{{ '/uploads/images/'.$post->image }}">
 					</div>
 				</a>
 				<a class="titles-link" href="{{ route('posts.show', $post->id) }}">
@@ -66,4 +67,5 @@
 		</div>
 	</div>
 </section>
+@endif
 @endsection

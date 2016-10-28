@@ -13,6 +13,7 @@
     	<h1>Terms of Use</h1>
     </div>
 </section>
+
 <section id="main-wrapper">
     <div class="container">  
     	<h2 class="section">
@@ -35,7 +36,7 @@
 				<a href="{{ route('posts.show', $post->id) }}">
 					<div class="fanart">
 						<img class="base" src="http://test.subztv.gr/themes/subztv/assets/bootstrap/img/noimage2.png" alt="Fanart">
-						<img class="real lazy" alt="Another Super Creepy Teaser for Horror 'The Autopsy of Jane Doe'" src="http://media2.firstshowing.net/firstshowing/img9/AutopsyofJanedoeteaser2LookingTsr2.jpg">
+						<img class="real lazy" src="{{ isset($post->image) ? '/uploads/images/'.$post->image : 'http://test.subztv.gr/themes/subztv/assets/bootstrap/img/noimage2.png' }}">
 						<div class="shadow-base"></div>
 					</div>
 				</a>

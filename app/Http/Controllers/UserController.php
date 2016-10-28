@@ -109,7 +109,7 @@ class UserController extends Controller
         	$image = $request->file('avatar');
           	$filename = time() . '.' . $image->getClientOriginalExtension();
           	$location = public_path('uploads/images/' . $filename);
-          	Image::make($image)->resize(100, null, function ($constraint) {$constraint->aspectRatio(); $constraint->upsize();} )->save($location);
+          	Image::make($image)->resize(100, 100)->save($location);
 			$oldFilename = $user->avatar;
 			// update the database
 			$user->avatar = $filename;

@@ -182,6 +182,8 @@ return [
 		Intervention\Image\ImageServiceProvider::class,
 		Barryvdh\Debugbar\ServiceProvider::class,
 		Tmdb\Laravel\TmdbServiceProvider::class,
+		Laravel\Socialite\SocialiteServiceProvider::class,
+		Zizaco\Entrust\EntrustServiceProvider::class,
 
     ],
 
@@ -234,6 +236,7 @@ return [
       	'Html' => Collective\Html\HtmlFacade::class,
 		'Image' => Intervention\Image\Facades\Image::class,
 		'Debugbar' => Barryvdh\Debugbar\Facade::class,
+		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
