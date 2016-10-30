@@ -2,7 +2,6 @@
 
 @section('body-class', 'user profile')
 
-
 <style>
 #boxes-wrapper .row .stat-box {
     background-size: cover;

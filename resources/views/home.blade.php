@@ -3,6 +3,7 @@
 @section('body-class', 'home')
 
 @section('content')
+
 <section id="main-wrapper">
     <div class="container">  
     	<h2 class="section">
@@ -53,4 +54,5 @@
         </div>   
     </div>
 </section>
+
 @endsection

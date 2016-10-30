@@ -95,7 +95,7 @@ class UserController extends Controller
         $userRole = $user->roles->pluck('id','id')->toArray();
 		
 		// for model binding
-    	if($user->id == Auth::id()){
+    	if($user->id == Auth::id() || Auth::user()->hasRole('admin')){
         	return view('users.edit')->withUser($user)->withRoles($roles)->withUserRole($userRole);
    	 	}
     	else

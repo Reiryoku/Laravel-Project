@@ -3,8 +3,7 @@
     <head>
         @include('partials.head')
     </head>
-     
-     
+
     @section('bodytag')
 	<body>
     @show

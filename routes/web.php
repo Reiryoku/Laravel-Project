@@ -10,12 +10,8 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
-
 Auth::routes();
-
 Route::get('/', 'HomeController@index');
-
 // User
 Route::resource('users',
     'UserController', array(
@@ -24,19 +20,14 @@ Route::resource('users',
 );
 Route::get('user/{id}', array('uses' => 'UserController@show', 'as' => 'profile'));
 Route::get('user/{id}/posts', array('uses' => 'UserController@posts', 'as' => 'user.posts'));
-
 // Posts
 Route::resource('posts', 'PostController');
-
 // Categories
 Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 Route::resource('tags', 'TagController', ['except' => ['create']]);
-
 // Movies
-/* Route::resource('movies','MovieController'); */
 Route::get('movie/{id}','MovieController@show');
 Route::get('movies','MovieController@index');
-
 // Roles
 Route::get('roles',['as'=>'roles.index','uses'=>'RoleController@index']);
 Route::get('roles/create',['as'=>'roles.create','uses'=>'RoleController@create']);
@@ -45,3 +36,15 @@ Route::get('roles/{id}',['as'=>'roles.show','uses'=>'RoleController@show']);
 Route::get('roles/{id}/edit',['as'=>'roles.edit','uses'=>'RoleController@edit']);
 Route::patch('roles/{id}',['as'=>'roles.update','uses'=>'RoleController@update']);
 Route::delete('roles/{id}',['as'=>'roles.destroy','uses'=>'RoleController@destroy']);
+// Dashboard
+Route::get('dashboard', array('uses' => 'DashboardController@index', 'as' => 'dashboard'));
+Route::group(array('prefix' => 'dashboard'), function()
+{
+    Route::get('/', 'DashboardController@index');
+    Route::get('settings', 'DashboardController@settings');
+    Route::get('users', 'DashboardController@users');
+    Route::get('reviews', 'DashboardController@reviews');
+    Route::get('news', 'DashboardController@news');
+    Route::get('tags', 'DashboardController@tags');
+    Route::get('categories', 'DashboardController@categories');
+});

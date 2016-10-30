@@ -1,11 +1,17 @@
 body {
     font-family: 'Open Sans Condensed', sans-serif;
+	background-color: #000;
     color: #979797;
     font-size: 14px;
 }
 
 h2.section {
     margin: 28px 0;
+}
+
+h2.with-line {
+    border-bottom: solid 1px #eee;
+    padding-bottom: 2px;
 }
 
 h2 i {
@@ -21,6 +27,23 @@ h2 .feed-icons {
 h2 .feed-icons .feed-icon {
     color: #999;
     transition: .5s all;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.user-avatar {
+    position: relative;
+}
+
+.user-avatar img {
+    display: block;
+    width: 100%;
+    border: solid 3px #464646;
+    background-color: #464646;
+    margin-bottom: 5px;
+    border-radius: 50%;
 }
 
 .alert-fixed {
@@ -45,7 +68,49 @@ h2 .feed-icons .feed-icon {
     vertical-align: middle;
     transition: all .5s;
 }
+#content {
+	padding-top:50px;
+}
+/* ==========================================================================
+   Pagination
+   ========================================================================== */
+.pagination > li > a, 
+.pagination > li > span {
+   	background-color: transparent;
+    border: none;
+	font-size: 18px;
+	color: #999999;
+}
 
+.pagination-top,
+.pagination-bottom {
+    text-align: center;
+}
+.pagination i {
+    font-size: 20px;
+	margin-top: 2px;
+}
+.pagination>.disabled>span, 
+.pagination>.disabled>span:hover, 
+.pagination>.disabled>span:focus, 
+.pagination>.disabled>a, 
+.pagination>.disabled>a:hover, 
+.pagination>.disabled>a:focus {
+    color: #999999;
+    background-color: transparent;
+}
+.pagination > li > a:hover, 
+.pagination > li > span:hover, 
+.pagination > li > a:focus, 
+.pagination > li > span:focus {
+    z-index: 2;
+    color: #23527c;
+    background-color: transparent;
+    border-color: #dddddd;
+}
+/* ==========================================================================
+   Panels
+   ========================================================================== */
 .panel {
     margin-bottom: 20px;
     background-color: white;
@@ -66,9 +131,13 @@ h2 .feed-icons .feed-icon {
    Navbar
    ========================================================================== */
 .navbar {
-	background: rgba(0,0,0,0.6);
-	border: 1px solid transparent;
+	background: rgba(0,0,0,1);
 	height: 50px;
+	transition: background .5s;
+	border:none;
+}
+.navbar.transparent {
+	background: rgba(0,0,0,0.6);
 }
 .navbar-nav li>a {
     padding-left: 20px;
@@ -463,6 +532,7 @@ h2 .feed-icons .feed-icon {
    ========================================================================== */
 #recent-wrapper {
     padding-bottom: 30px;
+	background-color: #fff;
 }
 #recent-wrapper h2 {
     text-transform: uppercase;
@@ -477,4 +547,95 @@ h2 .feed-icons .feed-icon {
 #recent-wrapper .posters>div .titles h3 {
     font-size: 14px;
     height: 14px;
+}
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+    background: #000;
+    color: #fff;
+    padding: 20px;
+	font-weight:bold;
+    font-size: 13px;
+}
+
+footer .links {
+    margin-bottom: 20px;
+}
+footer .links:before, 
+footer .links:after {
+    content: " ";
+    display: table;
+}
+footer .links:after {
+    clear: both;
+}
+footer .links ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    float: left;
+    width: calc(100% - 150px);
+}
+footer .links ul:before, 
+footer .links ul:after {
+    content: " ";
+    display: table;
+}
+footer .links ul:after {
+    clear: both;
+}
+footer .links ul li {
+    float: left;
+    padding: 0 30px 0 0;
+    text-transform: uppercase;
+}
+footer a {
+    color: #fff;
+}
+footer .links .social {
+    float: right;
+}
+footer .links .social .fa {
+    font-size: 16px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+footer .copyright {
+    color: #777;
+    font-size: 11px;
+}
+footer .copyright:before, 
+footer .copyright:after {
+    content: " ";
+    display: table;
+}
+footer .copyright:after {
+    clear: both;
+}
+footer .copyright .trakt {
+    float: left;
+    white-space: nowrap;
+}
+footer .copyright .trakt .logo {
+    margin-right: 13px;
+    opacity: .3;
+}
+footer .copyright .amazon {
+    display: block;
+    float: right;
+    color: #777;
+    white-space: nowrap;
+    transition: all .5s;
+}
+footer .copyright .amazon .icon {
+    float: right;
+    margin-left: 10px;
+}
+footer .copyright .amazon .icon .fa {
+    font-size: 30px;
+}
+footer .copyright .amazon .text {
+    float: right;
+    text-align: right;
 }
