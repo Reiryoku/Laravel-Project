@@ -5,77 +5,73 @@
 @endsection
 
 @section('dashboard-content')
-
-<section id="results-top-wrapper" class="dashboard-wrapper">
-	<div class="poster-bg-wrapper">
-    	<div class="poster-bg" style="background-image: url({{ URL::to('/') }}/img/poster-bg.jpg)"></div>
-    </div>
-    <div class="container">
-    	<h1>Όλες οι κατηγορίες</h1>
-    </div>
-</section>
-
-<section id="main-wrapper" style="padding:0;">
-	<div class="container-fluid">
-    	<div class="row">
-            <div class="col-md-12">
-            	<div class="row">
-                	<div style="padding:20px; background-color: #fafafa">
-                    	<div class="pagination-top">
-                    		{!! $users->links(); !!}
-                        </div>
-                    	<h2> </h2>
-                        <div class="table-responsive">
-                        	<table class="table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>ΕΙΚΟΝΑ</th>
-                                    <th>ΟΝΟΜΑ ΧΡΗΣΤΗ</th>
-                                    <th>ΟΝΟΜΑ</th>
-                                    <th>ΕΠΩΝΥΜΟ</th>
-                                    <th>ΡΟΛΟΙ</th>
-                                    <th>ΑΡΘΡΑ</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th>ACTION</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $user)
-                                <tr>
-                                    <th class="col-sm-1">{{ $user->id }}</th>
-                                    <th class="user-avatar col-sm-1">
-                                    	<img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="{{ isset($user->avatar) ? '/uploads/images/'.$user->avatar : '/uploads/images/avatar.jpg' }}" class="lazy">
-                                    </th>
-                                    <td class="col-sm-1">{{ $user->name }}</td>
-                                    <td class="col-sm-1">{{ $user->first_name }}</td>
-                                    <td class="col-sm-1">{{ $user->last_name }}</td>
-                                    <td class="col-sm-1">
-                                    @foreach($user->roles as $role)
-										<span>{{ $role->display_name }}</span>
-									@endforeach
-                    				</td>
-                                    <td class="col-sm-1">{{ $user->posts->count() }}</td>
-                                    <td class="col-sm-1">{{ date('M j, Y h:ia', strtotime($user->created_at)) }}</td>
-                                    <td class="col-sm-1">{{ date('M j, Y h:ia', strtotime($user->updated_at )) }}</td>
-                                    <td class="col-sm-1">
-                                    	<a class="btn btn-info btn-sm" href="{{ route('users.show', $user->id) }}">ΕΜΦΑΝΙΣΗ</a>
-                        				<a class="btn btn-primary btn-sm" href="{{ route('users.edit', $user->id) }}">ΕΠΕΞΕΡΓΑΣΙΑ</a>
-            						</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        </div>
-                        <div class="pagination-bottom">
-                    		{!! $users->links(); !!}
+    <section id="results-top-wrapper" class="dashboard-wrapper">
+        <div class="poster-bg-wrapper">
+            <div class="poster-bg" style="background-image: url({{ URL::to('/') }}/img/poster-bg.jpg)"></div>
+        </div>
+        <div class="container">
+            <h1>Όλοι οι χρήστες</h1>
+        </div>
+    </section>   
+    <section id="users-wrapper">
+        <div class="container">
+            <div class="pagination-top">
+                {!! $users->links(); !!}
+            </div>            
+            <div class="row fanarts">
+                @foreach ($users as $user)
+                    <div class="grid-item col-md-4">
+                        <div class="row">
+                            <div class="col-sm-5 col-md-4">
+                                <div class="fanart">
+                                    <img class="base" src="/uploads/images/avatar.jpg" alt="Fanart">
+                                    <img class="real lazy" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="{{ isset($user->avatar) ? '/uploads/images/'.$user->avatar : '/uploads/images/avatar.jpg' }}">
+                                    <div class="shadow-base"></div>
+                                </div>
+                                <div class="quick-icons">
+                                    <div class="actions">
+                                        <a class="view" href="{{ route('users.show', $user->id) }}"><div class="base"></div><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a class="edit" href="{{ route('users.edit', $user->id) }}"><div class="base"></div><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        <a class="delete"><div class="base"></div><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="col-md-8 col-sm-7 under-info">
+                                <div class="titles">
+                                    <h3>
+                                    <div class="stats">
+                                        <a title=""><i class="fa fa-file-text-o" aria-hidden="true"></i>{{ $user->posts->count() }}</a>
+                                    </div>
+                                        <a href="{{ route('users.show', $user->id) }}">
+                                            <span class="main-title-sxe">ID: {{ $user->id }}</span>
+                                            <span class="main-title">{{ $user->first_name && $user->last_name ? $user->first_name : $user->name }}</span>
+                                        </a>
+                                    </h3>
+                                    <ul class="additional-stats">
+                                        <li>
+                                            @foreach($user->roles as $role)
+                                                <h4 class="role">{{ $role->display_name }}</h4>
+                                            @endforeach
+                                         </li>
+                                        <li>
+                                            <h4>Created at:</h4> {{ date('M j, Y h:ia', strtotime($user->created_at)) }}  
+                                         </li>
+                                        <li>
+                                            <h4> Updated at: </h4> {{ date('M j, Y h:ia', strtotime($user->updated_at )) }}
+                                         </li>
+                                    </ul>
+                                </div>
+                                <p class="bio">
+                                    {{ $user->bio }}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>  
-            </div>   
+                @endforeach
+            </div>
+            <div class="pagination-bottom">
+                {!! $users->links(); !!}
+            </div>       
         </div>
-    </div>
-</section>
- 
+    </section>
 @endsection

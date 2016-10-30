@@ -6,22 +6,6 @@
 	<body class="dashboard">
 @endsection
 
-
-<style>
-#dashboard-wrapper {
-	background-color:white;
-	position:relative; 
-	z-index:0;
-}
-#results-top-wrapper.dashboard-wrapper {
-	padding:50px 0;
-}
-#dashboard-wrapper .user-avatar img {
-    width: 72px;
-    border-width: 3px;
-}
-</style>
-
 @section('content')
 
 <section id="dashboard-wrapper">

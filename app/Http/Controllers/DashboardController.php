@@ -39,7 +39,7 @@ class DashboardController extends Controller
 	
 	public function users()
 	{
-		$users = User::with('roles')->orderBy('id', 'asc')->paginate(5);
+		$users = User::with('roles')->orderBy('id', 'asc')->paginate(16);
         return view('dashboard.users')->withUsers($users);
 	}
 
