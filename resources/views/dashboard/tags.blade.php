@@ -15,40 +15,40 @@
         </div>
     </section>
 
-<section id="main-wrapper">
-	<div class="container-fluid">
-    	<div class="row">
-            <div class="col-md-12">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Όνομα</th>
-                        </tr>
-                    </thead>
-    
-                    <tbody>
-                        @foreach ($tags as $tag)
-                        <tr>
-                            <th>{{ $tag->id }}</th>
-                            <td>{{ $tag->name }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-				<hr>
-                <h1>Νέα Ετικέτα</h1>
-				{!! Form::open(['route' => 'tags.store', 'method' => 'POST']) !!}
-                	<div class="form-group">
-						{{ Form::text('name', null, ['class' => 'form-control']) }}
-                    </div>
-					<div class="form-group">
-						{{ Form::submit('Create New Tag', ['class' => 'btn btn-primary btn-block btn-h1-spacing']) }}
+		<section id="main-wrapper">
+			<div class="container-fluid">
+		    	<div class="row">
+		            <div class="col-md-12">
+		                <table class="table table-bordered">
+		                    <thead>
+		                        <tr>
+		                            <th>#</th>
+		                            <th>Όνομα</th>
+		                        </tr>
+		                    </thead>
+
+		                    <tbody>
+		                        @foreach ($tags as $tag)
+		                        <tr>
+		                            <th>{{ $tag->id }}</th>
+		                            <td>{{ $tag->name }}</td>
+		                        </tr>
+		                        @endforeach
+		                    </tbody>
+		                </table>
+										<hr>
+		                <h1>Νέα Ετικέτα</h1>
+						{!! Form::open(['route' => 'tags.store', 'method' => 'POST']) !!}
+		                	<div class="form-group">
+								{{ Form::text('name', null, ['class' => 'form-control']) }}
+		                    </div>
+							<div class="form-group">
+								{{ Form::submit('Create New Tag', ['class' => 'btn btn-primary btn-block btn-h1-spacing']) }}
+							</div>
+						{!! Form::close() !!}
 					</div>
-				{!! Form::close() !!}
-			</div>
-        </div>
-    </div>
-</section>
+		        </div>
+		    </div>
+		</section>
 
 @endsection

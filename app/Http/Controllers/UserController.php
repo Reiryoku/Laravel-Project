@@ -118,8 +118,7 @@ class UserController extends Controller
         $this->validate($request, array(
                 'name' => 'required|max:255',
 				'email' => 'required|max:255',
-				'image' => 'image',
-            	'roles' => 'required'
+				'image' => 'image'
             ));
         // Save the data to the database
         $user = User::find($id);
@@ -135,7 +134,7 @@ class UserController extends Controller
         	$image = $request->file('avatar');
           	$filename = time() . '.' . $image->getClientOriginalExtension();
           	$location = public_path('uploads/images/' . $filename);
-          	Image::make($image)->resize(100, 100)->save($location);
+          	Image::make($image)->resize(180, 180)->save($location);
 			$oldFilename = $user->avatar;
 			// update the database
 			$user->avatar = $filename;

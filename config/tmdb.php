@@ -8,7 +8,7 @@ return [
     /*
      * Api key
      */
-    'api_key' => 'f085bb91e6365f80cfa1bc88bebfa1a4',
+    'api_key' => env('TMDB_API_KEY'),
 
     /**
      * Client options

@@ -8,7 +8,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
+            <a class="navbar-brand" href="{{ url('/') }}">
+            	<img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="/img/logo.png" class="lazy">
+            </a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
       	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -37,12 +39,16 @@
               	@else
         		<li class="dropdown">
           			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">                    
-                    <img class="avatar" src="{{ isset(Auth::user()->avatar) ? '/uploads/images/'.Auth::user()->avatar : '/uploads/images/avatar.jpg' }}">
-                    <span class="hidden-xs hidden-sm">{{ Auth::user()->first_name && Auth::user()->last_name ? Auth::user()->first_name . ' ' . Auth::user()->last_name : Auth::user()->username }}</span>
-                    <span class="caret"></span></a>
+                    	<img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="{{ isset(Auth::user()->avatar) ? '/uploads/images/'.Auth::user()->avatar : '/img/avatar.png' }}" class="avatar lazy">
+                    	<span class="hidden-xs hidden-sm">{{ Auth::user()->first_name && Auth::user()->last_name ? Auth::user()->first_name . ' ' . Auth::user()->last_name : Auth::user()->username }}</span>
+                    <span class="caret"></span>
+                    </a>
           			<ul id="user-menu" class="dropdown-menu">
             			<li><a href="{{ route('users.show', Auth::user()->id) }}">Προφίλ</a></li>
                         <li><a href="{{ route('users.edit', Auth::user()->id) }}">Ρυθμισεις</a></li>
+                        @if(Auth::user()->hasRole('admin'))
+		           		<li><a href="{{ url('dashboard') }}">Πινακας Ελεγχου</a></li>
+		           		@endif
             			<li role="separator" class="divider"></li>
             			<li>
                         	<a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Αποσύνδεση</a>

@@ -47,7 +47,7 @@
                         <a href="{{ route('posts.show', $post->id) }}">
                             <span class="main-title-sxe">{{ $post->title }}</span>
                         </a>
-                        <div class="episode-stats hidden-sm">
+                        <div class="stats hidden-sm">
                         	<a href="{{ route('posts.show', $post->id) }}"><i class="fa fa-eye" aria-hidden="true"></i>Εμφάνιση</a>
                             <a href="{{ route('posts.edit', $post->id) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Επεξεργασία</a>
                         </div>

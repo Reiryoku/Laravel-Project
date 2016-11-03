@@ -8,6 +8,7 @@ use App\User;
 use App\Role;
 use App\Permission;
 
+use App\Post;
 use App\Category;
 use App\Tag;
 
@@ -39,8 +40,14 @@ class DashboardController extends Controller
 	
 	public function users()
 	{
-		$users = User::with('roles')->orderBy('id', 'asc')->paginate(16);
+		$users = User::with('roles')->orderBy('id', 'asc')->paginate(15);
         return view('dashboard.users')->withUsers($users);
+	}
+	
+	public function posts()
+	{
+		$posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        return view('dashboard.posts')->withPosts($posts);
 	}
 
 }

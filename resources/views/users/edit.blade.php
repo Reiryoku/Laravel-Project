@@ -153,7 +153,7 @@ body.widgets .buttons .btn {
 	<div class="container">
 		<div class="row" id="info-wrapper">
             <div class="col-md-2 col-sm-2 hidden-xs">
-                <div class="sidebar affixable affix" data-spy="affix" data-offset-top="100" style="width: 173px;">
+                <div class="sidebar affixable" data-spy="affix" data-offset-top="100" style="width: 173px;">
                     <ul class="nav sections">
                         <li><a href="#account">ΛΟΓΑΡΙΑΣΜΟΣ</a></li>
                         <li><a href="#password">ΚΩΔΙΚΟΣ</a></li>

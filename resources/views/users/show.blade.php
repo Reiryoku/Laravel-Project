@@ -75,33 +75,33 @@
     line-height: 1;
     text-decoration: none;
 }
-#boxes-wrapper .row .stats {
+#boxes-wrapper .row .user-stats {
     background-color: #019edf;
     text-align: center;
 }
-#boxes-wrapper .row .stats .split {
+#boxes-wrapper .row .user-stats .split {
     width: 50%;
     float: left;
 }
-#boxes-wrapper .row .stats .stat {
+#boxes-wrapper .row .user-stats .stat {
     font-size: 20px;
     line-height: 22px;
     margin-top: 18px;
 }
-#boxes-wrapper .row .stats .stat .number {
+#boxes-wrapper .row .user-stats .stat .number {
 	font-weight:bold;
 }
-#boxes-wrapper .row .stats .under-stat {
+#boxes-wrapper .row .user-stats .under-stat {
     line-height: 1.2;
     font-size: 12px;
     color: #77CBEE;
 }
-#boxes-wrapper .row .stats .under-stat .type {
+#boxes-wrapper .row .user-stats.under-stat .type {
     color: #fff;
 	font-weight:bold;
     text-transform: uppercase;
 }
-#boxes-wrapper .row .stats .bottom-shade {
+#boxes-wrapper .row .user-stats .bottom-shade {
     background-color: #0199d8;
     position: absolute;
     width: 100%;
@@ -201,7 +201,7 @@
                     </div>
                 </div>
                 @endforeach
-                <div class="col-sm-6 col-md-3 stats stat-box">
+                <div class="col-sm-6 col-md-3 user-stats stat-box">
                     <h2>ΣΤΑΤΙΣΤΙΚΑ ΑΡΘΡΩΝ</h2>
                     <div class="top-shade">
                         <div class="split">

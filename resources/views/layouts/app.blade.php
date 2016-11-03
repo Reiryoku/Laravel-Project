@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el" class="no-js">
     <head>
         @include('partials.head')
     </head>
@@ -18,8 +18,10 @@
         	@yield('content')
         </div>
         
-        @include('partials.footer')
-        
+        @section('footer')
+			 @include('partials.footer')
+    	@show
+
         @include('partials.javascript')
         
         @yield('scripts')

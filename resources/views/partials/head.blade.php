@@ -8,15 +8,15 @@
 
 <title>Blog @yield('title')</title>
 
-<link rel="shortcut icon" href="{{{ asset('themes/subztv/assets/bootstrap/img/favicon.ico') }}}" type="image/x-icon">
-<link rel="icon" href="{{{ asset('themes/subztv/assets/bootstrap/img/favicon.ico') }}}" type="image/x-icon">
+<link rel="shortcut icon" href="{!! url('/img/favicon.ico') !!}" type="image/x-icon">
+<link rel="icon" href="{!! url('/img/favicon.ico') !!}" type="image/x-icon">
 
 {!! Html::style('//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700') !!}
-{!! Html::style('css/font-awesome.min.css') !!}
+{!! Html::style('css/font-awesome.css') !!}
 
 <!-- Bootstrap -->
 {!! Html::style('css/bootstrap.css') !!}
-
+<!-- Styles-->
 {!! Html::style('css/styles.css') !!}
 
 @yield('stylesheets')

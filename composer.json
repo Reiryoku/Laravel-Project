@@ -12,8 +12,9 @@
         "barryvdh/laravel-debugbar": "^2.3",
         "php-tmdb/laravel": "^1.1",
         "filp/whoops": "^2.1",
-        "laravel/socialite": "^2.0",
-        "zizaco/entrust": "^1.7"
+        "zizaco/entrust": "^1.7",
+        "doctrine/dbal": "^2.5",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

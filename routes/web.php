@@ -26,7 +26,9 @@ Route::resource('posts', 'PostController');
 Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 Route::resource('tags', 'TagController', ['except' => ['create']]);
 // Movies
-Route::get('movie/{id}','MovieController@show');
+Route::get('movie/{id}', ['uses' => 'MovieController@show', 'as' => 'movie.show']);
+Route::get('movie/{id}/getData','MovieController@getData');
+Route::get('movies/getPopular','MovieController@getPopular');
 Route::get('movies','MovieController@index');
 // Roles
 Route::get('roles',['as'=>'roles.index','uses'=>'RoleController@index']);
@@ -43,6 +45,7 @@ Route::group(array('prefix' => 'dashboard'), function()
     Route::get('/', 'DashboardController@index');
     Route::get('settings', 'DashboardController@settings');
     Route::get('users', 'DashboardController@users');
+	Route::get('posts', 'DashboardController@posts');
     Route::get('reviews', 'DashboardController@reviews');
     Route::get('news', 'DashboardController@news');
     Route::get('tags', 'DashboardController@tags');

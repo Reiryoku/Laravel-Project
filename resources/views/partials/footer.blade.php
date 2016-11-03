@@ -1,15 +1,20 @@
+<div id="main-search">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Βρές ταινία η σειρά</h2>
+                <form id="footer-search" action="/search" accept-charset="UTF-8" method="get">
+                	<input name="utf8" type="hidden" value="✓">
+               	 	<input class="footer-search col-xs-12" name="query" placeholder="Κάνε αναζήτηση για Breaking Bad, Mr. Robot, or Mad Max...">
+                </form>
+			</div>
+		</div>
+	</div>
+</div>
 <footer>
 	<div class="links">
 		<ul class="left-side">
 			<li><a href="/about">About</a></li>
-			<li><a target="_blank" href="https://blog.trakt.tv">Blog</a></li>
-			<li><a href="/forums/">Forums</a></li>
-			<li><a target="_blank" href="http://docs.trakt.apiary.io">API</a></li>
-			<li><a href="/oauth/applications">Create an App</a></li>
-			<li><a class="import-movie-link" href="#">Import Movie</a></li>
-			<li><a class="import-show-link" href="#">Import TV Show</a></li>
-			<li><a target="_blank" href="/advertise">Advertise</a></li>
-			<li><a target="_blank" href="http://support.trakt.tv">Help</a></li>
 			<li><a href="/terms">Terms</a></li>
 			<li><a href="/privacy">Privacy</a></li>
 		</ul>
@@ -29,15 +34,15 @@
 		</div>
 	</div>
 	<div class="copyright">
-		<div class="trakt">
-        	<img align="left" class="logo" height="30" src="http://test.subztv.gr//themes/subztv/assets/bootstrap/img/logo.png" alt="Mini white logo@2x">
-            © 2010-2016 trakt, inc. All rights reserved.<br>Hand crafted in San Diego and the Bay Area.
+		<div class="subztv">
+        	<img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="/img/logo-g.png" class="lazy logo" align="left"  height="30">
+            Copyright © 2016 SubzTV<br>Ελληνικοί Υπότιτλοι Ταινιών και Σειρών
         </div>
-		<a target="_blank" class="amazon" href="/amazon">
+		<a target="_blank" class="paypal" href="/amazon">
 			<div class="icon">
-				<div class="fa fa-amazon"></div>
+				<i class="fa fa-paypal" aria-hidden="true"></i>
 			</div>
-			<div class="text">Shop at Amazon.com<br>to help support us!</div>
+			<div class="text">Κάντε μια δωρεά στο Paypal<br>για να μας βοηθήσετε!</div>
 		</a>
 	</div>
 </footer>
