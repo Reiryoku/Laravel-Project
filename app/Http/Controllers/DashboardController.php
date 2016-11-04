@@ -28,13 +28,13 @@ class DashboardController extends Controller
 	
 	public function categories()
 	{
-		$categories = Category::orderBy('id', 'asc')->paginate(1);
+		$categories = Category::orderBy('id', 'asc')->paginate(10);
         return view('dashboard.categories')->withCategories($categories);
 	}
 
 	public function tags()
 	{
-		$tags = Tag::all();
+		$tags = Tag::orderBy('id', 'asc')->paginate(10);
         return view('dashboard.tags')->withTags($tags);
 	}
 	
@@ -47,7 +47,9 @@ class DashboardController extends Controller
 	public function posts()
 	{
 		$posts = Post::orderBy('created_at', 'desc')->paginate(10);
-        return view('dashboard.posts')->withPosts($posts);
+		$categories = Category::all();
+		$tags = Tag::all();
+        return view('dashboard.posts')->withPosts($posts)->withCategories($categories)->withTags($tags);
 	}
 
 }

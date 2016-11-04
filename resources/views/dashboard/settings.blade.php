@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '| Πίνακας Ελέγχου')
+@section('title', '| Dashboard')
 
 @section('bodytag')
 	<body class="dashboard">
@@ -48,7 +48,7 @@ $('body').scrollspy(
 $('.affixable').affix({
     offset: {     
       top: 290,
-      bottom: ($('footer').outerHeight(true) + $('#main-search').outerHeight(true)) + 40
+      bottom: ($('footer').outerHeight(true) + $('#main-search').outerHeight(true) + $('#related-wrapper').outerHeight(true)) + 40
     }
 });
 </script>

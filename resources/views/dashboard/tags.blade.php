@@ -6,49 +6,74 @@
 
 @section('dashboard-content')
 
-    <section id="results-top-wrapper" class="dashboard-wrapper">
-        <div class="poster-bg-wrapper">
-            <div class="poster-bg" style="background-image: url({{ URL::to('/') }}/img/poster-bg.jpg)"></div>
+<div class="col-md-2 col-sm-2 hidden-xs">
+    <div class="sidebar affixable" style="width: 173px;">
+    	<div class="scrollspy">
+            <ul class="nav sections">
+                <li><a href="#first-link">ΟΛΕΣ ΟΙ ΕΤΙΚΕΤΕΣ</a></li>
+                <li><a href="#second-link">ΝΕΑ ΕΤΙΚΕΤΑ</a></li>
+            </ul>
         </div>
-        <div class="container">
-            <h1>Όλες οι ετικέτες</h1>
+    </div>
+</div>
+
+<div class="col-md-10 col-sm-9">
+    <div class="panel panel-default" id="first-link">
+        <div class="panel-heading">ΟΛΕΣ ΟΙ ΕΤΙΚΕΤΕΣ</div>
+        <div class="panel-body table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ΟΝΟΜΑ</th>
+                        <th>ΠΕΡΙΓΡΑΦΗ</th>
+                        <th>ΑΡ. ΑΡΘΡΩΝ</th>
+                        <th>ΔΗΜΙΟΥΡΓΗΘΗΚΕ</th>
+                        <th>ΕΝΗΜΕΡΩΘΗΚΕ</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($tags as $tag)
+                    <tr>
+                        <th>{{ $tag->id }}</th>
+                        <td>{{ $tag->name }}</td>
+                        <td>{{ $tag->description }}</td>
+                        <td>{{ $tag->posts->count() }}</td>
+                        <td>{{ date('M j, Y', strtotime($tag->created_at)) }}</td>
+                        <td>{{ date('M j, Y', strtotime($tag->updated_at)) }}</td>
+                        <td>
+                        	<a href="{{ route('tags.show', $tag->id) }}"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></a>
+                            <a href="{{ route('tags.edit', $tag->id) }}"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></a>
+                            <a><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    @endforeach
+              </tbody>
+			</table>
         </div>
-    </section>
-
-		<section id="main-wrapper">
-			<div class="container-fluid">
-		    	<div class="row">
-		            <div class="col-md-12">
-		                <table class="table table-bordered">
-		                    <thead>
-		                        <tr>
-		                            <th>#</th>
-		                            <th>Όνομα</th>
-		                        </tr>
-		                    </thead>
-
-		                    <tbody>
-		                        @foreach ($tags as $tag)
-		                        <tr>
-		                            <th>{{ $tag->id }}</th>
-		                            <td>{{ $tag->name }}</td>
-		                        </tr>
-		                        @endforeach
-		                    </tbody>
-		                </table>
-										<hr>
-		                <h1>Νέα Ετικέτα</h1>
-						{!! Form::open(['route' => 'tags.store', 'method' => 'POST']) !!}
-		                	<div class="form-group">
-								{{ Form::text('name', null, ['class' => 'form-control']) }}
-		                    </div>
-							<div class="form-group">
-								{{ Form::submit('Create New Tag', ['class' => 'btn btn-primary btn-block btn-h1-spacing']) }}
-							</div>
-						{!! Form::close() !!}
-					</div>
-		        </div>
-		    </div>
-		</section>
+    </div>
+    <div class="pagination-bottom">
+		{!! $tags->links(); !!}
+	</div>
+	{!! Form::open(['route' => 'tags.store', 'method' => 'POST']) !!}
+        <div class="panel panel-default" id="second-link">
+            <div class="panel-heading">ΝΕΑ ΕΤΙΚΕΤΑ</div>
+            <div class="panel-body">		
+                <div class="form-group">
+                	<label>ΟΝΟΜΑ</label>
+                    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'ΟΝΟΜΑ ΕΤΙΚΕΤΑΣ']) !!}
+                </div>
+                <div class="form-group">
+                	<label>ΠΕΡΙΓΡΑΦΗ</label>
+                    {!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'ΠΕΡΙΓΡΑΦΗ ΕΤΙΚΕΤΑΣ']) !!}
+                </div>
+            </div>
+        </div>
+        <div class="form-group" style="text-align: center;">
+            {{ Form::submit('ΝΕΑ ΕΤΙΚΕΤΑ', ['class' => 'btn btn-primary']) }}
+        </div>
+	{!! Form::close() !!}
+</div>
 
 @endsection
