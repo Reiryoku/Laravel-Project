@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('body-class', 'movies')
+@section('body-class', 'tvshows')
 
 @section('content')
 <section id="results-top-wrapper">
@@ -26,33 +26,33 @@
 		</div>
 	</div>
 </section>
-<!-- Movies Wrapper -->
-<section id="movies-wrapper">
+<!-- tvshows Wrapper -->
+<section id="tvshows-wrapper">
 	<div class="container">
     	<div class="pagination-top">
-        	{!! $movies->links(); !!} 
+        	{!! $tvshows->links(); !!} 
         </div>
         <!-- Posters -->	
 		<div class="row posters">
 			
-			@foreach( $movies as $movie)
+			@foreach( $tvshows as $tvshow)
 
                 <!-- Grid Item -->	
 				<div class="grid-item col-xs-4 col-md-2 col-sm-3">
 
-                	<a class="titles-link" href="{{ route('movie.show', $movie->id) }}">
+                	<a class="titles-link" href="{{ route('tvshow.show', $tvshow->id) }}">
                     	<!-- Poster -->	
                         <div class="poster">
                             <img class="base" src="/img/noimage.png" alt="Poster">
-                            <img class="real lazy" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="https://image.tmdb.org/t/p/w185/{!! $movie->poster_path !!}">
+                            <img class="real lazy" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="https://image.tmdb.org/t/p/w185/{!! $tvshow->poster_path !!}">
 
                             <div class="shadow-base"></div>
                         </div>
 					</a>
                     <!-- Titles -->	
                     <div class="titles">
-						<h3>{!! $movie->original_title !!}</h3>
-                        <h4>{!! date('Y', strtotime($movie->release_date)) !!}</h4>
+						<h3>{!! $tvshow->original_title !!}</h3>
+                        <h4>{!! date('Y', strtotime($tvshow->release_date)) !!}</h4>
    
 					</div>
 				</div>
@@ -62,7 +62,7 @@
               
 		</div>
         <div class="pagination-bottom"> 
-        	{!! $movies->links(); !!} 
+        	{!! $tvshows->links(); !!} 
         </div>
 	</div>   
 </section>

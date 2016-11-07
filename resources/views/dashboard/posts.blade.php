@@ -45,10 +45,10 @@
                         <td class="col-sm-1">{{ $post->category->name }}</td>
                         <td class="col-sm-1">{{ date('M j, Y', strtotime($post->created_at)) }}</td>
                         <td class="col-sm-1">{{ $post->updated_at->diffForHumans() }}</td>
-                        <td class="col-sm-2">
-                        	<a href="{{ route('posts.show', $post->id) }}"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></a>
-                            <a href="{{ route('posts.edit', $post->id) }}"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></a>
-                            <a><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a>
+                        <td class="col-sm-4">
+                        	<a href="{{ route('posts.show', $post->id) }}" class="btn btn btn-info btn-xs"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></a>
+                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></a>
+                            <a class="btn btn-danger btn-xs"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a>
                        	</td>
                     </tr>
                     @endforeach

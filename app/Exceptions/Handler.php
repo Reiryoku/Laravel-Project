@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -44,6 +45,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+		// You can add your own exception here
+    	// so redirect to the home route
+    	if ($exception instanceof NotFoundHttpException) {
+        	return response()->view('errors.404');
+    	}
+		
         return parent::render($request, $exception);
     }
 

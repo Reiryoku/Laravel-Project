@@ -47,7 +47,7 @@ $('body').scrollspy(
 
 $('.affixable').affix({
     offset: {     
-      top: 290,
+      top: 300,
       bottom: ($('footer').outerHeight(true) + $('#main-search').outerHeight(true)) + 40
     }
 });

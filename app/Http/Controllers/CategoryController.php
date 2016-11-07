@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Category;
+use App\Post;
+
 use Session;
 
 class CategoryController extends Controller
 {
-    public function __construct() {
+    public function __construct() 
+	{
         $this->middleware('auth');
     }
     /**
@@ -19,10 +22,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        // display a view of all of our categories
-        // it will also have a form to create a new category
+
+		$posts = Post::all();
         $categories = Category::all();
-        return view('categories.index')->withCategories($categories);
+		
+        return view('categories.index')->withPosts($posts)->withCategories($categories);
     }
     /**
      * Store a newly created resource in storage.

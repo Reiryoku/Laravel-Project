@@ -3,7 +3,7 @@
 @section('title', '| Επεξεργασία Άρθρου')
 
 @section('stylesheets')
-	{!! Html::style('css/select2.min.css') !!}
+	{!! Html::style('css/select2.css') !!}
 @endsection
 
 @section('content')
@@ -63,7 +63,7 @@
 @endsection
 
 @section('scripts')
-	{!! Html::script('js/select2.min.js') !!}
+	{!! Html::script('js/select2.js') !!}
 	<script type="text/javascript">
 		$('.select2').select2();
 		$('.select2').select2().val({!! json_encode($post->tags()->getRelatedIds()) !!}).trigger('change');

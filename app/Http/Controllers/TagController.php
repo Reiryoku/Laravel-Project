@@ -10,11 +10,9 @@ use Session;
 
 class TagController extends Controller
 {
-
     public function __construct() {
         $this->middleware('auth');
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +23,6 @@ class TagController extends Controller
         $tags = Tag::all();
         return view('tags.index')->withTags($tags);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -43,7 +40,6 @@ class TagController extends Controller
 
         return redirect()->route('tags.index');
     }
-
     /**
      * Display the specified resource.
      *
@@ -55,7 +51,6 @@ class TagController extends Controller
         $tag = Tag::find($id);
         return view('tags.show')->withTag($tag);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -67,7 +62,6 @@ class TagController extends Controller
         $tag = Tag::find($id);
         return view('tags.edit')->withTag($tag);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -88,7 +82,6 @@ class TagController extends Controller
 
         return redirect()->route('tags.show', $tag->id);
     }
-
     /**
      * Remove the specified resource from storage.
      *

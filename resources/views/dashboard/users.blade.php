@@ -5,7 +5,6 @@
 @endsection
 
 @section('dashboard-content')
-
 <div class="col-md-2 col-sm-2 hidden-xs">
     <div class="sidebar affixable" style="width: 173px;">
     	<div class="scrollspy">
@@ -15,7 +14,6 @@
         </div>
     </div>
 </div>
-
 <div class="col-md-10 col-sm-9">
 	<div class="panel panel-default" id="first-link">
         <div class="panel-heading">ΟΛΟΙ ΟΙ ΧΡΗΣΤΕΣ</div>
@@ -50,9 +48,9 @@
                     <td>{{ date('M j, Y', strtotime($user->created_at)) }}</td>
                     <td>{{ date('M j, Y', strtotime($user->updated_at )) }}</td>
                     <td>
-                    	<a href="{{ route('users.show', $user->id) }}"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></a>
-                      	<a href="{{ route('users.edit', $user->id) }}"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></a>
-                       	<a><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a>
+                    	<a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-xs"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></a>
+                      	<a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></a>
+                       	<a class="btn btn-danger btn-xs"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a>
                     </td>
               	</tr>
                 @endforeach
@@ -64,5 +62,4 @@
         {!! $users->links(); !!}
     </div>             
 </div>
-
 @endsection

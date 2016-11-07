@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('stylesheets')
+	{!! Html::style('css/parsley.css') !!}
+@endsection
+
+@section('bodytag')
+	<body class="login">
+@endsection
+
 @section('nav')
 @endsection
 
@@ -15,7 +23,7 @@
 			<div class="logo"></div>
 		</div>
 	</a>
-    {{ Form::open(['url' => 'login', 'class' => 'form-signin']) }}
+    {{ Form::open(['url' => 'login', 'class' => 'form-signin' ,'data-parsley-validate']) }}
 		<h1>subztv</h1>
 		<h2 class="quote">I am the one who knocks.</h2>
 		<div class="form-inputs with-icons">
@@ -23,16 +31,36 @@
 				<i class="fa fa-user-o" aria-hidden="true"></i>
 				<div class="control-group user_login">
 					<div class="controls">
-                    	{{ Form::email('email', null, ['id'=>'email', 'class'=>'top form-control', 'placeholder' => 'Βάλε το email σου!']) }}
+                    	{{ Form::email('email', null, 
+                        	[
+                                'id'=>'email', 
+                                'class'=>'top form-control', 
+                                'placeholder' => 'Διεύθυνση Ηλ. Ταχυδρομείου',
+                                'required',
+                                'data-parsley-required-message' => 'Η Διεύθυνση Ηλ. Ταχυδρομείου είναι υποχρεωτική!',
+                                'data-parsley-trigger' => 'change focusout',
+                                'data-parsley-type' => 'email'
+                         	]) 
+                         }}
                     </div>
 				</div>
 			</div>
 			<div class="with-icon">
-				<a class="side-link" tabindex="-1" href="{{ url('/password/reset') }}">μήπως το ξέχασες;</a>
+				<a class="side-link" tabindex="-1" href="{{ url('/password/reset') }}">Μήπως το ξέχασες;</a>
 				<i class="fa fa-lock" aria-hidden="true"></i>
 				<div class="control-group user_password">
 					<div class="controls">
-                        {{ Form::password('password', ['class'=>'bottom form-control', 'placeholder' => 'Βάλε τον κωδικό σου!']) }}
+                        {{ Form::password('password', 
+                        	[
+                            	'class'=>'bottom form-control', 
+                                'placeholder' => 'Κωδικός Χρήστη',
+                                'required',
+                                'data-parsley-required-message' => 'Ο Κωδικός Χρήστη είναι υποχρεωτικός!',
+                                'data-parsley-trigger'	=> 'change focusout',
+                                'data-parsley-minlength'	=> '6',
+                                'data-parsley-maxlength'	=> '20'
+                        	]) 
+                     	}}
                     </div>
 				</div>
 			</div>
@@ -79,4 +107,8 @@
 @endsection
 
 @section('footer')
+@endsection
+
+@section('scripts')
+	{!! Html::script('js/parsley.js') !!}
 @endsection

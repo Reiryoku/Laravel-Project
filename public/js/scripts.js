@@ -19,13 +19,13 @@ window.onload = init;
 /* ==========================================================================
    Lazy Load
    ========================================================================== */
-$(document).ready(function () {
+$(document).ready(function() {
 	$("img.lazy").lazyload({
 		effect: "fadeIn",
 		effectTime: 1000
 	});
 });
-$(document).ready(function () {
+$(document).ready(function() {
 	$("div.lazy").lazyload({
 		effect: "fadeIn",
 		effectTime: 1000
@@ -34,6 +34,7 @@ $(document).ready(function () {
 /* ==========================================================================
    Disqus Comments
    ========================================================================== */
+/*
 latest_comment_disqus('subztv', 6, '9v4bEuOB9DZ0OAzb5rLmhKYv95SyqDPk9l9YPSECYsHP2HreoIdditto1MCNzkKK');
 
 function latest_comment_disqus(username, count, apikey) {
@@ -85,17 +86,19 @@ function latest_comment_disqus(username, count, apikey) {
 			$('#latest-comments .row').html(html);
 		});
 	}
-	/* ==========================================================================
-	   Facebook
-	   ========================================================================== */
-window.fbAsyncInit = function () {
+*/
+/* ==========================================================================
+   Facebook
+   ========================================================================== */
+/*
+window.fbAsyncInit = function() {
 	FB.init({
 		appId: '1022916317749905',
 		xfbml: true,
 		version: 'v2.5'
 	});
 };
-(function (d, s, id) {
+(function(d, s, id) {
 	var js, fjs = d.getElementsByTagName(s)[0];
 	if (d.getElementById(id)) {
 		return;
@@ -107,10 +110,12 @@ window.fbAsyncInit = function () {
 	js.async = true;
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+*/
 /* ==========================================================================
    Twitter
    ========================================================================== */
-! function (d, s, id) {
+/*
+! function(d, s, id) {
 	var js, fjs = d.getElementsByTagName(s)[0],
 		p = /^http:/.test(d.location) ? 'http' : 'https';
 	if (!d.getElementById(id)) {
@@ -122,12 +127,14 @@ window.fbAsyncInit = function () {
 		fjs.parentNode.insertBefore(js, fjs);
 	}
 }(document, "script", "twitter-wjs");
+*/
 /* ==========================================================================
    Google Analytics
    ========================================================================== */
-(function (i, s, o, g, r, a, m) {
+/*
+(function(i, s, o, g, r, a, m) {
 	i['GoogleAnalyticsObject'] = r;
-	i[r] = i[r] || function () {
+	i[r] = i[r] || function() {
 		(i[r].q = i[r].q || []).push(arguments)
 	}, i[r].l = 1 * new Date();
 	a = s.createElement(o),
@@ -140,6 +147,7 @@ window.fbAsyncInit = function () {
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-67510511-1', 'auto');
 ga('send', 'pageview');
+*/
 /* ==========================================================================
   Google Fonts
   ========================================================================== */
@@ -160,12 +168,12 @@ ga('send', 'pageview');
 /* ==========================================================================
    Bg Loading
    ========================================================================== */
-$(window).load(function () {
+$(window).load(function() {
 	$("#loading-bg").fadeOut(500, "linear");
 });
 
-$(function () {
-	$(window).on("scroll", function () {
+$(function() {
+	$(window).on("scroll", function() {
 		if ($(window).scrollTop() > 50) {
 			$(".navbar-fixed-top").addClass("transparent");
 		} else {
@@ -174,3 +182,7 @@ $(function () {
 		}
 	});
 });
+
+$(function() {
+	$('[data-toggle="tooltip"]').tooltip()
+})

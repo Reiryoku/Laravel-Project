@@ -7,7 +7,6 @@
 @endsection
 
 @section('dashboard-content')
-
 <div class="col-md-2 col-sm-2 hidden-xs">
     <div class="sidebar affixable" style="width: 173px;">
     	<div class="scrollspy">
@@ -18,7 +17,6 @@
         </div>
     </div>
 </div>
-
 <div class="col-md-10 col-sm-9">
     <div class="panel panel-default" id="first-link">
         <div class="panel-heading">ΟΛΕΣ ΟΙ ΚΑΤΗΓΟΡΙΕΣ</div>
@@ -39,17 +37,17 @@
                 <tbody>
                     @foreach ($categories as $category)
                     <tr>
-                    	<td>{{ $category->image }}</td>
-                        <th>{{ $category->id }}</th>
-                        <td>{{ $category->name }}</td>
-                        <td>{{ $category->description }}</td>
-                        <td>{{ $category->posts->count() }}</td>
-                        <td>{{ date('M j, Y', strtotime($category->created_at)) }}</td>
-                        <td>{{ date('M j, Y', strtotime($category->updated_at)) }}</td>
-                        <td>
-                        	<a href="{{ route('categories.show', $category->id) }}"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></a>
-                            <a href="{{ route('categories.edit', $category->id) }}"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></a>
-                            <a><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a>
+                    	<td class="col-sm-1">{{ $category->image }}</td>
+                        <td class="col-sm-1">{{ $category->id }}</th>
+                        <td class="col-sm-1">{{ $category->name }}</td>
+                        <td class="col-sm-1">{{ $category->description }}</td>
+                        <td class="col-sm-1">{{ $category->posts->count() }}</td>
+                        <td class="col-sm-1">{{ date('M j, Y', strtotime($category->created_at)) }}</td>
+                        <td class="col-sm-1">{{ date('M j, Y', strtotime($category->updated_at)) }}</td>
+                        <td class="col-sm-1">
+                        	<a href="{{ route('categories.show', $category->id) }}" class="btn btn-info btn-xs"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></a>
+                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></a>
+                            <a class="btn btn-danger btn-xs"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -79,5 +77,4 @@
         </div>
     {!! Form::close() !!}
 </div>
-
 @endsection

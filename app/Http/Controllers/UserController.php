@@ -19,7 +19,11 @@ use Storage;
 use File;
 
 class UserController extends Controller
-{
+{	
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,11 +32,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('created_at', 'desc')->paginate(4);
-        //return view('user.index')->withUsers($users);
-		dd($users);
-    }
-	
-	
+        return view('users.index')->withUsers($users);
+    }		
 	public function posts($id)
     {
 		$user = User::with('roles')->find($id);
@@ -40,7 +41,6 @@ class UserController extends Controller
 
 		return view('users.posts')->withUser($user)->withPosts($posts);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -50,7 +50,6 @@ class UserController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -61,7 +60,6 @@ class UserController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
@@ -80,7 +78,6 @@ class UserController extends Controller
 		
 		return view('users.show')->withUser($user)->withPosts($posts)->withCategories($categories);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -94,17 +91,14 @@ class UserController extends Controller
 		$roles = Role::pluck('display_name','id');
         $userRole = $user->roles->pluck('id','id')->toArray();
 		
-		// for model binding
     	if($user->id == Auth::id() || Auth::user()->hasRole('admin')){
         	return view('users.edit')->withUser($user)->withRoles($roles)->withUserRole($userRole);
    	 	}
     	else
 		{
         	return redirect()->route('users.show', $user);
-    	}
-       	
+    	}       	
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -150,8 +144,6 @@ class UserController extends Controller
         // redirect with flash data to posts.show
         return redirect()->route('users.edit', $user->id);
     }
-
-
     /**
      * Remove the specified resource from storage.
      *

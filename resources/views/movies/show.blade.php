@@ -12,7 +12,7 @@
 
 <section id="summary-wrapper">    
     <div class="bg">
-        <div class="bg lazy" style="background-image: url( https://image.tmdb.org/t/p/w1280/{{ $movie->backdrop }} );"></div>
+        <div class="bg lazy" style="background-image: url( https://image.tmdb.org/t/p/w1280/{{ $movie->backdrop_path }} );"></div>
     </div>
     <div class="shadow-base"></div>
     <div class="movie" id="summary-ratings-wrapper">
@@ -69,7 +69,7 @@
                     <!-- Poster -->
                     <div class="poster">
                         <img class="base" src="/img/noimage.png" alt="Poster">
-                        <img class="real lazy" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="https://image.tmdb.org/t/p/w185/{{ $movie->poster }}">
+                        <img class="real lazy" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="https://image.tmdb.org/t/p/w185/{{ $movie->poster_path }}">
                     </div>
                     <div class="scrollspy">
                         <!-- Sections -->
@@ -216,7 +216,6 @@
 		</div>
 	</div>
 </section>
-
 <section id="related-wrapper">
 	<div class="container">
         <h2><i class="fa fa-film"></i> Εαν σου αρεσε αυτη η  ταινια  ισως σου αρεσει επισης...</h2>
@@ -226,7 +225,7 @@
                 <a class="titles-link" href="{{ route('movie.show', $similar->id) }}">
                     <div class="poster">
                         <img class="base" src="/img/noimage.png" alt="Poster">
-                        <img class="real lazy" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="https://image.tmdb.org/t/p/w185/{!! $similar->poster !!}">
+                        <img class="real lazy" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-original="https://image.tmdb.org/t/p/w185/{!! $similar->poster_path !!}">
     
                         <div class="shadow-base"></div>
                     </div>
@@ -240,7 +239,6 @@
   		</div>   
 	</div>   
 </section>
-
 @endsection
 
 @section('scripts')

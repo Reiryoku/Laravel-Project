@@ -5,7 +5,6 @@
 @endsection
 
 @section('dashboard-content')
-
 <div class="col-md-2 col-sm-2 hidden-xs">
     <div class="sidebar affixable" style="width: 173px;">
     	<div class="scrollspy">
@@ -16,7 +15,6 @@
         </div>
     </div>
 </div>
-
 <div class="col-md-10 col-sm-9">
     <div class="panel panel-default" id="first-link">
         <div class="panel-heading">ΟΛΕΣ ΟΙ ΕΤΙΚΕΤΕΣ</div>
@@ -36,16 +34,16 @@
                 <tbody>
                     @foreach ($tags as $tag)
                     <tr>
-                        <th>{{ $tag->id }}</th>
-                        <td>{{ $tag->name }}</td>
-                        <td>{{ $tag->description }}</td>
-                        <td>{{ $tag->posts->count() }}</td>
-                        <td>{{ date('M j, Y', strtotime($tag->created_at)) }}</td>
-                        <td>{{ date('M j, Y', strtotime($tag->updated_at)) }}</td>
-                        <td>
-                        	<a href="{{ route('tags.show', $tag->id) }}"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></a>
-                            <a href="{{ route('tags.edit', $tag->id) }}"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></a>
-                            <a><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a>
+                        <td class="col-sm-1">{{ $tag->id }}</th>
+                        <td class="col-sm-1">{{ $tag->name }}</td>
+                        <td class="col-sm-1">{{ $tag->description }}</td>
+                        <td class="col-sm-1">{{ $tag->posts->count() }}</td>
+                        <td class="col-sm-1">{{ date('M j, Y', strtotime($tag->created_at)) }}</td>
+                        <td class="col-sm-1">{{ date('M j, Y', strtotime($tag->updated_at)) }}</td>
+                        <td class="col-sm-1">
+                        	<a href="{{ route('tags.show', $tag->id) }}" class="btn btn-info btn-xs"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></a>
+                            <a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></a>
+                            <a class="btn btn-danger btn-xs"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -75,5 +73,4 @@
         </div>
 	{!! Form::close() !!}
 </div>
-
 @endsection

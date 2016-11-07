@@ -15,7 +15,7 @@ class CreateMoviesTable extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->increments('id');			
-			$table->string('backdrop', 255)->nullable();
+			$table->string('backdrop_path', 255)->nullable();
 			$table->string('budget', 255)->nullable();
 			$table->string('genres', 255)->nullable();
 			$table->string('homepage', 255)->nullable();
@@ -25,7 +25,7 @@ class CreateMoviesTable extends Migration
 			$table->string('original_title', 255)->nullable();
 			$table->text('overview')->nullable();
 			$table->float('tmdb_popularity', 50)->unsigned()->nullable();
-			$table->string('poster', 255)->nullable();
+			$table->string('poster_path', 255)->nullable();
 			$table->string('production_companies', 255)->nullable();
 			$table->string('production_countries', 255)->nullable();
 			$table->string('release_date', 255)->nullable();
@@ -37,8 +37,8 @@ class CreateMoviesTable extends Migration
 			$table->string('title', 255);	
 			$table->string('tmdb_vote_average', 3)->nullable();
 			$table->float('tmdb_vote_count', 50)->unsigned()->nullable();
-			$table->string('awards', 255)->nullable();
-			$table->string('trailer', 255)->nullable();			
+			$table->string('trailer', 255)->nullable();
+			$table->string('slug')->unique();			
             $table->timestamps();
         });
     }

@@ -11,8 +11,11 @@ use App\Permission;
 use DB;
 
 class RoleController extends Controller
-{
-
+{	
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +27,6 @@ class RoleController extends Controller
         return view('roles.index',compact('roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +37,6 @@ class RoleController extends Controller
         $permission = Permission::get();
         return view('roles.create',compact('permission'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -61,10 +62,8 @@ class RoleController extends Controller
             $role->attachPermission($value);
         }
 
-        return redirect()->route('roles.index')
-                        ->with('success','Role created successfully');
+        return redirect()->route('roles.index')->with('success','Role created successfully');
     }
-
     /**
      * Display the specified resource.
      *
@@ -80,7 +79,6 @@ class RoleController extends Controller
 
         return view('roles.show',compact('role','rolePermissions'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -97,7 +95,6 @@ class RoleController extends Controller
 
         return view('roles.edit',compact('role','permission','rolePermissions'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -125,10 +122,8 @@ class RoleController extends Controller
             $role->attachPermission($value);
         }
 
-        return redirect()->route('roles.index')
-                        ->with('success','Role updated successfully');
+        return redirect()->route('roles.index') ->with('success','Role updated successfully');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -138,7 +133,6 @@ class RoleController extends Controller
     public function destroy($id)
     {
         DB::table("roles")->where('id',$id)->delete();
-        return redirect()->route('roles.index')
-                        ->with('success','Role deleted successfully');
+        return redirect()->route('roles.index')->with('success','Role deleted successfully');
     }
 }

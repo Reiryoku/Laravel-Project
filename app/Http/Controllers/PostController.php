@@ -14,13 +14,11 @@ use Storage;
 use Session;
 
 class PostController extends Controller
-{
-	
+{	
 	public function __construct() 
 	{
         $this->middleware('auth');
     }
-	
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +30,6 @@ class PostController extends Controller
 		
         return view('posts.index')->withPosts($posts);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -45,7 +42,6 @@ class PostController extends Controller
 		
         return view('posts.create')->withCategories($categories)->withTags($tags);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -88,7 +84,6 @@ class PostController extends Controller
 
         return redirect()->route('posts.show', $post->id);
     }
-
     /**
      * Display the specified resource.
      *
@@ -101,7 +96,6 @@ class PostController extends Controller
 		
         return view('posts.show')->withPost($post);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -109,8 +103,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-		
+    {		
 		// find the post in the database and save as a var
         $post = Post::find($id);
 		
@@ -126,12 +119,10 @@ class PostController extends Controller
 		
         foreach ($tags as $tag) {
             $tags2[$tag->id] = $tag->name;
-        }
-		
+        }		
         // return the view and pass in the var we previously created
         return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -140,8 +131,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-		
+    {		
 		// Validate the data
         $post = Post::find($id);
 		
@@ -187,7 +177,6 @@ class PostController extends Controller
         // redirect with flash data to posts.show
         return redirect()->route('posts.show', $post->id);
     }
-
     /**
      * Remove the specified resource from storage.
      *
